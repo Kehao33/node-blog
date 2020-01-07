@@ -38,7 +38,15 @@ app.use('/admin', admin)
 app.use((err, req, res, next) => {
   // JSON.parse()将字符串对象转化为对象类型 ,res.redirect(`/admin/user-edit?message=${err.message}`)
   const result = JSON.parse(err);
-  res.redirect(`${result.path}?message=${result.message}`)
+  // let obj = {path: '/admin/user-dit', message: '密码比对失败，不能进行信息的修改', id: id}
+  // 为了解决多个参数的动态拼接，进行如下操作
+  let params = []
+  for (let attr in result) {
+    if(attr != 'path') {
+      params.push(attr + '=' + result[attr]);
+    }
+  }
+  res.redirect(`${result.path}?${params.join('&')}`)
 })
 
 // 监听端口
