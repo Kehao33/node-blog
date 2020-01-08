@@ -4,6 +4,10 @@
 4. bcrypt： 密码加密（第三方模块）依赖于python2.x, node-gyp(npm install -g node-gyp), windows-build-tools(npm i -g --production windows-build-tools)
 5. 服务端使用session存储客户端发过来的信息 npm i express-session
 6. javascript对象的规则描述语言和验证器 npm i joi
+7. body-parser：只能用于处理普通的表单请求参数，不能够用来处理二进制数据
+8. formidable：（npm i formidable) 解析表单， 支持get请求参数，post请求参数，文件上传（二进制数据才能传递到服务端）
+9. dateformat 格式化时间 npm i dateformat
+10. 实现数据分页第三方 mongoose-sex-page
 
 
 ## 注意： 
@@ -43,6 +47,13 @@
         session会生成一个sessionID，然后将sessionID作为唯一标识来存储客户端的信息，并将sessionID存储在cookie中，让浏览器有记忆功能
     
     只要重启服务器，session就会失效
+    form 表单中的enctype属性指定表单数据的编码类型 默认为application/x-www-form-urlencoded  如： name=zhangsan&age=20
+
+    文件上传表单的编码格式必须为二进制形式传递到二进制。
+    enctype="multipart/form-data" :即代表将数据编码成二进制的类型
+
+js:读取文件 FileReader 读取二进制文件
+在表单选择控件中，可以给表单加上multiple属性，可以一次性选择多个文件
 
     
 

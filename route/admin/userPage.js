@@ -1,8 +1,10 @@
 // 引入user构造函数
 const { User } = require('../../model/user')
 module.exports = async (req, res) => {
+  // 标识，标识当前访问的是用户管理页面
+  req.app.locals.currentLink = 'user'
   let page = req.query.page || 1
-  let count = await User.countDocuments({})
+  let count = await User.countDocuments({}) 
   // 接受客户端传递过来的当前页参数
   // 每一页显示的数据条数
   let pagesize = 10
