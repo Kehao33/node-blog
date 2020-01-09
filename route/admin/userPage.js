@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
   res.render('admin/user', {
     users,
     page,
-    total
+    total,
+    count
   })
 }

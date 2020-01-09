@@ -20,11 +20,10 @@ module.exports = (req, res) => {
       title: fields.title,
       author: fields.author,
       publishDate: fields.publishDate,
-      cover: files.cover.path.split('public')[1],
+      cover: files.cover.path.split('public')[1], // 文件的路径
       content: fields.content
     });
     // 将页面重定向到文章列表页面
     res.redirect('/admin/article')
   })
-  // res.send('ok');
 }

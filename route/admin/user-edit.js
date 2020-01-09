@@ -3,7 +3,7 @@ module.exports = async (req, res) => {
   // 标识，标识当前访问的是用户管理页面
   req.app.locals.currentLink = 'user'
   // 获取到地址栏中的id参数
-  const { message, id } = req.query
+  const { message, id} = req.query
   if (id) {
     // 修改操作
     let user = await User.findOne({ _id: id })

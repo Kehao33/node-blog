@@ -38,5 +38,10 @@ admin.get('/article-edit', require('./admin/article-edit'))
 // 实现文章添加功能的路由
 admin.post('/article-add', require('./admin/article-add'))
 
+// 文章更新post请求
+admin.post('/article-update', require('./admin/article-update'))
+
+admin.get('/article_delete', require('./admin/article_delete'))
+
 
 module.exports = admin;

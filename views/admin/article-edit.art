@@ -10,22 +10,29 @@
     <!-- 主体区 -->
     <div class="main">
         <!-- 分类标题 -->
-        <div class="title">
-            <h4>5b9a716cb2d2bf17706bcc0a</h4>
+        <div class="title" style="display: {{ button == '添加' ? 'none' : 'block'}}">
+            <h4>文章的ID: &nbsp; {{@article && article._id}}</h4>
         </div>
         <!-- /分类标题  表单中的enctype属性指定表单数据的编码类型： 默认为application/x-www-form-urlencoded -->
-        <form class="form-container" action="/admin/article-add" enctype="multipart/form-data" method="post">
+        <form class="form-container" action="{{actionTo}}" enctype="multipart/form-data" method="post">
             <div class="form-group">
                 <label>标题</label>
-                <input type="text" name="title" class="form-control" placeholder="请输入文章标题">
+                <input type="text" value="{{article && article.title}}" name="title" class="form-control" placeholder="请输入文章标题">
             </div>
             <div class="form-group">
                 <label>作者</label>
-                <input type="text" name="author" class="form-control" readonly value="{{@userInfo._id}}">
+                {{if button == '修改'}}
+                <input type="text" value="{{@userInfo._id}}"  name="author" class="form-control" readonly>
+                <!-- 将原文章的封面的路径放在隐藏域里边 ， 如果在后台能得到上传文件的路径，那么就丢弃原来的封面-->
+                <input type="hidden" value="{{article && article.cover}}" name="oldCover" class="form-control">
+                {{else if button == '添加'}}
+                <input type="text" value="{{@userInfo._id}}"  name="author" class="form-control" readonly>
+                {{/if}}
+                
             </div>
             <div class="form-group">
                 <label>发布时间</label>
-                <input type="date" name="publishDate" class="form-control">
+                <input type="date"  value="{{article && dateFormat(article.publishDate,"yyyy-mm-dd")}}"  name="publishDate" class="form-control">
             </div>
             
             <div class="form-group">
@@ -33,15 +40,15 @@
                 <!-- multipart: 可以一次性选择多个文件 -->
                 <input type="file" name="cover" id="file">
                 <div class="thumbnail-waper">
-                    <img class="img-thumbnail" src="" id="preview">
+                    <img class="img-thumbnail" src="{{article && article.cover}}" id="preview" style="width: 40%; border: 0">
                 </div>
             </div>
             <div class="form-group">
                 <label>内容</label>
-                <textarea class="form-control" name="content" id="editor"></textarea>
+                <textarea class="form-control" name="content" id="editor">{{article && article.content}}</textarea>
             </div>
             <div class="buttons">
-                <input type="submit" class="btn btn-primary">
+                <input type="submit" value="{{button && button}}" class="btn btn-primary">
             </div>
         </form>
         

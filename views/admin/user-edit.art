@@ -13,7 +13,7 @@
         <div class="main">
             <!-- 分类标题 -->
             <div class="title">
-                <h4 style="display: {{ button == '修改' ? 'block' : 'none'}}">{{@user && user._id }}</h4>
+                <h4 style="display: {{ button == '修改' ? 'block' : 'none'}}">您的ID号为: &nbsp;{{@user && user._id }}</h4>
                 <p class="tips" style="color: red; font-size:16px;">{{message}}</p>
             </div>
             <!-- /分类标题 -->

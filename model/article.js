@@ -11,7 +11,7 @@ const articleSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, '请传递作者']
+        required: [true, '请填写传递作者']
     },
     publishDate: {
         type: Date,
