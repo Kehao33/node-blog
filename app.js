@@ -9,6 +9,10 @@ const session = require('express-session')
 const template = require('art-template')
 // 导入dateformat第三方模块
 const dateFormat = require('dateformat')
+// 导入morgan第三方模块，实现打印客户端的请求
+const morgan = require('morgan');
+// 导入config模块，首先他会根据环境来去找对应的配置文件，如果找不到就去default.json文件下找
+const config = require('config');
 // 创建网站服务器
 const app = express()
 
@@ -32,9 +36,21 @@ app.engine('art', require('express-art-template'))
 // 向模板内部导入dateFormate变量
 template.defaults.imports.dateFormat = dateFormat
 
+// 使用config.get(json_key)
+// console.log(config.get('title'))
 // 开放静态资源文件
 app.use(express.static(path.join(__dirname, 'public')))
 
+// process是global下的一个对象， 可以用来获取系统环境变量，返回值是对象
+if (process.env.NODE_ENV == 'development') {
+  // 当前是开发环境
+  console.log('当前是开发环境');
+  // 在开发环境中 将客户端发送到服务端的请求大隐刀控制台中
+  app.use(morgan('dev'))
+}else{
+  // 当前是生产环境
+  console.log('当前是生产环境')
+}
 // 引入路由模块
 const home = require('./route/home')
 const admin = require('./route/admin')

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文章详情</title>
+	<!-- 在外链资源中 / 代表的是开发的静态资源文件 public-->
+	<link rel="stylesheet" href="/home/css/base.css">
+    {{block 'link'}}{{/block}}
+</head>
+<body>
+    {{include './header.art'}}
+    {{block 'main'}}{{/block}}
+    {{block 'script'}}{{/block}}
+</body>
+</html>

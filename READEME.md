@@ -8,6 +8,18 @@
 8. formidable：（npm i formidable) 解析表单， 支持get请求参数，post请求参数，文件上传（二进制数据才能传递到服务端）
 9. dateformat 格式化时间 npm i dateformat
 10. 实现数据分页第三方 mongoose-sex-page
+11. morgan第三方实现客户端的请求打印到后台的控制台中，方便观看请求信息
+12. 第三方模块config： 允许开发人员将不同运行环境下的应用配置信息单独抽离到文件中，模块内部自动判断当前应用的运行环境，并读取对应的配置信息，极大提供应用配置信息的维护成本，避免了当前运行环境重复的多次切换，手动到项目代码中修改配置信息
+    使用步骤： 1. npm i config
+              2. 在项目的根目录下新建config文件夹
+              3. 在config文件夹下新建default.json,development.json,production.json问津
+              4. 在项目中通过require方法将模块进行导入
+              5. 使用模块内部提供的get(key)方法获取config下json文件配置信息
+    config第三方允许将敏感重要的信息存放在系统环境变量中，将敏感信息配置在 custom-environment-variables.json 文件中
+    如：在custom-environment-variables.json中配置 { "db"{ "password": "DB_PASSWORD" } },其中DB_PASSWORD为在环境变量中配置好的数据库密码的明文信息， 获取的时候，只需要使用config.get("db.password")即可得到在环境变量中配置好的信息。
+
+    
+
 
 
 ## 注意： 
